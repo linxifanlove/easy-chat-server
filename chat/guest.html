@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>用户界面</title>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">    
+    <link rel="stylesheet" type="text/css" href="css/style.css">    
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.css" />
+</head>
+<body  onload="connect()">
+<div data-role="page">
+	<div class="header linear-g">
+        <a class="text-center col-xs-8" style="width: 100%;">用户界面</a>
+    </div>
+    <div data-role="content" class="container" role="main" style="margin-top:50px;margin-bottom:80px;">
+        <ul class="content-reply-box mg10" id="talk_content"></ul>
+    </div>
+</div>
+<div data-role="fieldcontain" class="talk">
+    <input type="text" id ="talk_word" onkeydown="if(event.keyCode==13) {send()}">
+    <input type="submit" class="talk_send" data-inline="true" value="发送"  onclick='send()' >
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.0-rc.1.js"></script>
+<script type="text/javascript" src="js/socket.js"></script>
+<script type="text/javascript">
+    userid = "guest"
+</script>
+</body>
+</html>

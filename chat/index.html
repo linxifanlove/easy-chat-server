@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>客服界面</title>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">    
+    <link rel="stylesheet" type="text/css" href="css/style.css">    
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.css" />
+</head>
+<body  onload="connect()">
+<div data-role="page" id="pageone">
+	<div class="header linear-g">
+        <a class="text-center col-xs-8" style="width: 100%;">客服界面</a>
+    </div>
+
+    <div class="mypanel">
+        <div id="panel-content">
+            <a href="#" class="list-group-item">&nbsp;玩家列表</a>
+        </div>
+    </div>
+    <div class="mypanel">
+        <div id="panel-content2" data-role="content" class="container" role="main" >
+            <ul class="content-reply-box mg10" id="talk_content"></ul>
+        </div>
+    </div>
+</div>
+<div data-role="fieldcontain" class="talk">
+    <input type="text" id ="talk_word" onkeydown="if(event.keyCode==13) {send()}">
+    <input type="submit" class="talk_send" data-inline="true" value="发送"  onclick='send()'>
+    <input type="submit" class="talk_send" data-inline="true" value="test1"  onclick='test1()'>
+    <input type="submit" class="talk_send" data-inline="true" value="test2"  onclick='test2()'>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.0-rc.1.js"></script>
+<script type="text/javascript" src="js/socket.js"></script>
+<script type="text/javascript">
+    userid = "lin"
+    function addplayer(id) {
+        var str = '<a href="#" class="list-group-item" id="p'+id+'">&nbsp;访客'+id+'<span></span></a>'
+        $('#panel-content').append(str);
+        $('#p'+id).click(function(){
+            curclient = id
+            msgTipCount[id] = allwords[id].length
+            $('#talk_content').html("")
+            $('#p'+id+' span').html("")
+            for (var i = 0; i < allwords[id].length; i++) {
+                show_talk(allwords[id][i][0], allwords[id][i][1],allwords[id][i][2])
+            }
+        })
+    }
+    function removeplayer(id) {
+        $("#p"+id).remove();
+        if (curclient == id) {
+            $('#talk_content').html("")
+        }
+        delete allwords[id]
+        delete msgTipCount[id]
+    }
+    function test2() {
+        addplayer(3)
+    }
+
+</script>
+</body>
+</html>
